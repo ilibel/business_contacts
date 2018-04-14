@@ -7,17 +7,22 @@
       <th>Manager Name</th>
       <th>Phone</th>
       <th>Email</th>
-      <th><%= link_to "Add contact", '', class: "icon icon-add" %></th>
+      <th><%= link_to "Add contact", new_business_contact_path, class: "icon icon-add" %></th>
     </tr>
   </thead>
   <tbody>
   <% @organizations.each do |organization| %>
     <tr>
-      <td><%= organization.short_name %></td>
-      <td><%= organization.manager.try(:full_name) || organization.seo_name %></td>
+      <td>
+        <%= link_to organization.short_name, business_contact_path(organization) %>
+      </td>
+      <td><%= organization.manager.try(:full_name) || organization.ceo_name %></td>
       <td><%= organization.manager.try(:phone)     || organization.phones   %></td>
       <td><%= organization.manager.try(:email)     || organization.email    %></td>
-      <td><%= link_to "Edit", '', class: "icon icon-edit" %></td>
+      <td>
+        <%= link_to "Edit", edit_business_contact_path(organization), class: "icon icon-edit" %> |
+        <%= link_to "Delete", business_contact_path(organization), class: "icon icon-del", method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
   </tbody>

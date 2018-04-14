@@ -1,1 +1,1 @@
-get 'business-contacts' => 'business_contacts#index'
+resources :business_contacts

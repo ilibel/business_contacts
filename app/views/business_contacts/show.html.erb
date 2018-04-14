@@ -1,0 +1,14 @@
+<h2>Organization</h2>
+<% @organization.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
+  
+  <div class="form-group form-group-lg">
+    <%# In case of internalization, it should be something like t("organization.#{k}") %>
+    <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+  </div>
+  <br>
+  
+<% end %>
+<div class="form-group">
+  <%= link_to '« Back', business_contacts_path, class: 'btn btn-lg btn-default' %> |
+  <%= link_to "Edit", edit_business_contact_path(@organization), class: "icon icon-edit" %>
+</div>
