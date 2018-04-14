@@ -7,6 +7,8 @@ class Organization < ActiveRecord::Base
   
   strip_attributes
   
+  accepts_nested_attributes_for :managers, :allow_destroy => true
+  
   validates_uniqueness_of :short_name
   validates_presence_of   :short_name
   

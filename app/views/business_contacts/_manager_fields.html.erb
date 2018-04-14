@@ -1,0 +1,32 @@
+<div class="box manager-<%= manager.try(:id) %>">
+  <%= hidden_field_tag "organization[managers_attributes][#{manager.try(:id)}][organization_id]",
+    organization.try(:id) %>
+  <%= hidden_field_tag "organization[managers_attributes][#{manager.try(:id)}][id]",
+    manager.try(:id) %>
+  <p>
+    <label>First Name</label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][first_name]",
+      manager.try(:first_name), size: 64 %>
+  </p>
+  <p>
+    <label>Middle Name</label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][middle_name]",
+      manager.try(:middle_name), size: 64 %>
+  </p>
+  <p>
+    <label>Last Name</label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][last_name]",
+      manager.try(:last_name), size: 64 %>
+  </p>
+  <p>
+    <label>Email</label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][email]",
+      manager.try(:email), size: 64 %>
+  </p>
+  <p>
+    <label>Birthday</label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][birthday]",
+      manager.try(:birthday), size: 32, type: :date, placeholder: Date.current - 20.years %>
+    
+  </p>
+</div>

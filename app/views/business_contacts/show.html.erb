@@ -1,13 +1,42 @@
 <h2>Organization</h2>
-<% @organization.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
-  
-  <div class="form-group form-group-lg">
-    <%# In case of internalization, it should be something like t("organization.#{k}") %>
-    <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+<div class="box">
+  <% @organization.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
+    
+    <div class="form-group form-group-lg">
+      <%# In case of internalization, it should be something like t("organization.#{k}") %>
+      <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+    </div>
+    <br>
+    
+  <% end %>
+</div>
+
+<h3>Managers</h3>
+<% @organization.managers.each do |manager| %>
+  <div class="box">
+    <% if @organization.main_manager_id == manager.id %>
+      <span class="icon icon-ok">Main manager</span><br>
+    <% end %>
+    <% manager.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
+        <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+      <br>
+    <% end %>
   </div>
-  <br>
-  
 <% end %>
+
+<% if @organization.projects.any? %>
+  <h3>Related projects</h3>
+  <div class="box">
+    <% @organization.projects.each do |project| %>
+      <div>
+        <%= link_to project.name, project, target: '_blank' %>
+      </div>
+    <% end %>
+  </div>  
+<% end %>
+
+<br><br>
+
 <div class="form-group">
   <%= link_to '« Back', business_contacts_path, class: 'btn btn-lg btn-default' %> |
   <%= link_to "Edit", edit_business_contact_path(@organization), class: "icon icon-edit" %>

@@ -1,5 +1,6 @@
 class BusinessContactsController < ApplicationController
   before_action :set_organization, except: [:index, :new, :create]
+  before_action :set_projects, except: [:index, :show, :destroy]
 
   # GET    /business_contacts
   def index
@@ -33,6 +34,7 @@ class BusinessContactsController < ApplicationController
 
   # PUT    /business_contacts/:id
   def update
+    params[:organization][:project_ids] ||=[]
     if @organization.update organization_params
       flash[:notice] = 'Organization successfully updated!'
     end
@@ -52,6 +54,10 @@ class BusinessContactsController < ApplicationController
     @organization = Organization.find(params[:id])
   end
   
+  def set_projects
+    @projects = Project.all
+  end
+  
   def organization_params
     params.require(:organization).permit(
       :short_name,
@@ -67,7 +73,10 @@ class BusinessContactsController < ApplicationController
       :adress,              
       :phones,              
       :website,           
-      :email)
+      :email,
+      :main_manager_id,
+      managers_attributes: [:id, :first_name, :middle_name, :last_name, :email, :phone, :birthday, :organization_id],
+      project_ids: [])
   end
 
 end

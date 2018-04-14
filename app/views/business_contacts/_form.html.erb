@@ -1,93 +1,133 @@
-<%= form_for( @organization,
-      url: business_contacts_path(@organization),
-      method: (@organization.new_record? ? :post : :patch ) ) do |f| %>
-  <% if @organization.errors.any? %>
-    <div id="errorExplanation">
-      <h3 class="text-danger"><%= pluralize(@organization.errors.count, "error") %></h2>
-
-      <ul>
-      <% @organization.errors.full_messages.each do |message| %>
-        <li>
-          <div class="alert alert-danger" role="alert">
-            <%= message %>
-          </div>
-        </li>
-      <% end %>
-      </ul>
+<div class="box tabular">
+  <%= form_for( @organization,
+        url: (@organization.new_record? ? business_contacts_path : business_contact_path(@organization)),
+        method: (@organization.new_record? ? :post : :patch ) ) do |f| %>
+    <% if @organization.errors.any? %>
+      <div id="errorExplanation">
+        <h3 class="text-danger"><%= pluralize(@organization.errors.count, "error") %></h2>
+  
+        <ul>
+        <% @organization.errors.full_messages.each do |message| %>
+          <li>
+            <div class="alert alert-danger" role="alert">
+              <%= message %>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <p>
+      <%= f.label :short_name %>
+      <%= f.text_field :short_name, size: 128 %>
+    </p>
+    
+    <p>
+      <%= f.label :full_name %>
+      <%= f.text_field :full_name, size: 128 %>
+    </p>
+    
+    <p>
+      <%= f.label :inn %>
+      <%= f.text_field :inn, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :kpp %>
+      <%= f.text_field :kpp, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :ogrn %>
+      <%= f.text_field :ogrn, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :bik %>
+      <%= f.text_field :bik, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :bank_name %>
+      <%= f.text_field :bank_name, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :payment_account %>
+      <%= f.text_field :payment_account, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :correspondent_account %>
+      <%= f.text_field :correspondent_account, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :ceo_name %>
+      <%= f.text_field :ceo_name, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :adress %>
+      <%= f.text_field :adress, size: 128 %>
+    </p>
+    
+    <p>
+      <%= f.label :phones %>
+      <%= f.text_field :phones, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :website %>
+      <%= f.text_field :website, size: 64 %>
+    </p>
+    
+    <p>
+      <%= f.label :email %>
+      <%= f.text_field :email, size: 64 %>
+    </p>
+      
+    <% if @organization.managers.any? %>  
+      <p>
+        <%= f.label :main_manager_id %>
+        <%= f.select :main_manager_id, @organization.managers.pluck(:first_name, :id), {} %>
+      </p>
+    <% end %>
+    
+    <h3>Managers</h3>
+    <%# TODO: implement remove of a manager %>
+    <% @organization.managers.each do |manager| %>
+      <%= render partial: 'manager_fields', locals: {organization: @organization, manager: manager} %>
+    <% end %>
+    <div id="new_managers_container"></div>
+    <%= link_to 'New manager', '#new_managers_container', class: "add-new-manager icon icon-add" %>
+    
+    <br><br>
+    
+    <h3>Related projects</h3>
+    <% @projects.each do |project| %>
+      <div>
+          <%= check_box_tag "organization[project_ids][]", project.id, @organization.projects.include?(project) %>
+          <%= project.name %>
+      </div>
+    <% end %>
+    <br>
+    <div class="form-group">
+      <%= f.submit 'Save', class: 'btn btn-lg btn-success' %>
     </div>
   <% end %>
-  
-  <div class="form-group form-group-lg">
-    <%= f.label :short_name %><br>
-    <%= f.text_field :short_name, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :inn %><br>
-    <%= f.text_field :inn, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :kpp %><br>
-    <%= f.text_field :kpp, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :ogrn %><br>
-    <%= f.text_field :ogrn, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :bik %><br>
-    <%= f.text_field :bik, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :bank_name %><br>
-    <%= f.text_field :bank_name, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :payment_account %><br>
-    <%= f.text_field :payment_account, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :correspondent_account %><br>
-    <%= f.text_field :correspondent_account, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :ceo_name %><br>
-    <%= f.text_field :ceo_name, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :adress %><br>
-    <%= f.text_field :adress, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :phones %><br>
-    <%= f.text_field :phones, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :website %><br>
-    <%= f.text_field :website, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group form-group-lg">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
-  <br>
-  <div class="form-group">
-    <%= f.submit 'Save', class: 'btn btn-lg btn-success' %>
-  </div>
+</div>
+
+<% content_for :header_tags do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var new_manager_fields = '<%= (render partial: 'manager_fields', locals: {organization: @organization, manager: nil}).gsub("\n", "").html_safe %>';
+      var new_managers_container = $('#new_managers_container');
+      $(document).on('click', '.add-new-manager', function() {
+        new_managers_container.append(new_manager_fields);
+        console.log("Job's done!");
+      });
+    });
+  </script>
 <% end %>
