@@ -21,5 +21,12 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
 ```
 cd {REDMINE_ROOT}
+bundle exec rake db:drop db:create db:migrate redmine:plugins:migrate redmine:load_default_data RAILS_ENV=test
+```
+
+## Run tests
+
+```
+cd {REDMINE_ROOT}
 rspec plugins/business_contacts/spec/
 ```

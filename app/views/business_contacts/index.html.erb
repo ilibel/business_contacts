@@ -1,0 +1,24 @@
+<h2>Business Contacts</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Manager Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th><%= link_to "Add contact", '', class: "icon icon-add" %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @organizations.each do |organization| %>
+    <tr>
+      <td><%= organization.short_name %></td>
+      <td><%= organization.manager.try(:full_name) || organization.seo_name %></td>
+      <td><%= organization.manager.try(:phone)     || organization.phones   %></td>
+      <td><%= organization.manager.try(:email)     || organization.email    %></td>
+      <td><%= link_to "Edit", '', class: "icon icon-edit" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
