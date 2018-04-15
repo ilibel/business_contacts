@@ -17,6 +17,10 @@ bundle install RAILS_ENV=production
 bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 ```
 
+## Database schema
+
+![](documentation/business_contacts_db.png "Database schema of a business contacts plugin.")
+
 ## Tests
 
 ```
