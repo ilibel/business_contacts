@@ -1,6 +1,8 @@
-<h2>New organization</h2>
+<h2><%= l(:label_business_contact_new) %></h2>
+<% html_title(l(:label_business_contact_plural)) %>
+
 <%= render 'form' %>
 <br>
 <div class="form-group">
-  <%= link_to '« Back', business_contacts_path, class: 'btn btn-lg btn-default' %>
+  <%= link_to "« #{l(:button_back)}", business_contacts_path, class: 'btn btn-lg btn-default' %>
 </div>

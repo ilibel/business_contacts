@@ -1,7 +1,14 @@
-<h2>Edit an organization</h2>
+<%= render :partial => 'action_menu' %>
+
+<h2><%= l(:label_business_contact_edit) %></h2>
+<% html_title(l(:label_business_contact_plural)) %>
+
 <%= render 'form' %>
 <br>
-<div class="form-group">
-  <%= link_to '« Back', business_contacts_path, class: 'btn btn-lg btn-default' %> |
-  <%= link_to 'Show', business_contact_path(@organization) %>
-</div>
+
+<div style="clear: both;"></div>
+<%= render :partial => 'action_menu' %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'business_contacts/sidebar' %>
+<% end %>

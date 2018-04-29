@@ -1,0 +1,46 @@
+# Russian strings go here for Rails i18n
+ru:
+  label_business_contact: Бизнес контакты
+  label_business_contact_view_all: Все бизнес контакты
+  label_business_contact_new: Новый бизнес контакт
+  label_business_contact_edit: Редактировать бизнес контакты
+  label_business_contact_plural: Бизнес контакты
+  label_business_contact_added: Бизнес контакт добавлен
+  label_business_contact_updated: Бизнес контакты обновлен
+  label_business_contact_organization: Организация
+  label_business_contact_manager_plural: Менеджеры
+  label_business_contact_manager_add: Добавить менеджера
+  label_business_contact_manager_remove: Удалить менеджера
+  label_business_contact_related_projects: Связанные проекты
+  label_business_contact:
+    organization_fields:
+      short_name: Краткое наименование
+      full_name: Полное наименование
+      inn: ИНН
+      kpp: КПП
+      ogrn: ОГРН
+      bik: БИК
+      bank_name: Банк
+      payment_account: Р/с
+      correspondent_account: К/с
+      ceo_name: Имя директора
+      adress: Адрес
+      phones: Телефоны
+      website: Веб-сайт
+      email: Электронная почта
+      main_manager: Главный менеджер
+    manager_fields:
+      first_name: Имя
+      middle_name: Отчество
+      last_name: Фамилия
+      email: Электронная почта
+      phone: Телефон
+      birthday: Дата рождения
+  
+  business_contact_destroy_confirmation_message: Вы уверены?
+  notice_business_contact:
+    organization_successful_create: Организация успешно создана!
+    organization_successful_update: Организация успешно обновлена!
+    organization_successful_delete: "Организация \"%{organization_short_name}\" успешно удалена!"
+    manager_successful_create: Менеджер успешно добавлен!
+    manager_successful_delete: Менеджер успешно удален!

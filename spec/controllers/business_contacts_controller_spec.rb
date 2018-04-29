@@ -68,4 +68,27 @@ RSpec.describe BusinessContactsController, type: :controller do
     end
   end
   
+  describe "POST	/business_contacts/:business_contact_id/manager" do
+    before { @organization = Organization.create(short_name: '1', full_name: '1') }
+    
+    it "adds a business contact manager" do
+      expect {
+        post :create_manager, business_contact_id: @organization.id
+      }.to change{ Manager.count }.by(1)
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+  
+  describe "DELETE	/business_contacts/:business_contact_id/manager/:manager_id" do
+    before { @organization = Organization.create(short_name: '1', full_name: '1') }
+    before { @manager = @organization.managers.create }
+    
+    it "deletes a business contact manager" do
+      expect {
+        post :destroy_manager, business_contact_id: @organization.id, manager_id: @manager.id
+      }.to change{ Manager.count }.by(-1)
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+  
 end

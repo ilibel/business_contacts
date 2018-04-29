@@ -1,3 +1,46 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  label_business_contact: Business contact
+  label_business_contact_view_all: View all business contacts
+  label_business_contact_new: New business contact
+  label_business_contact_edit: Edit business contact
+  label_business_contact_plural: Business contacts
+  label_business_contact_added: Business contact added
+  label_business_contact_updated: Business contact updated
+  label_business_contact_organization: Organization
+  label_business_contact_manager_plural: Managers
+  label_business_contact_manager_add: Add manager
+  label_business_contact_manager_remove: Remove manager
+  label_business_contact_related_projects: Related projects
+  label_business_contact:
+    organization_fields:
+      short_name: Short name
+      full_name: Full name
+      inn: Inn
+      kpp: Kpp
+      ogrn: Ogrn
+      bik: Bik
+      bank_name: Bank name
+      payment_account: Payment account
+      correspondent_account: Correspondent account
+      ceo_name: Ceo name
+      adress: Adress
+      phones: Phones
+      website: Website
+      email: Email
+      main_manager: Main manager
+    manager_fields:
+      first_name: First Name
+      middle_name: Middle Name
+      last_name: Last Name
+      email: Email
+      phone: Phone
+      birthday: Birthday
+  
+  business_contact_destroy_confirmation_message: Are you sure?
+  notice_business_contact:
+    organization_successful_create: Organization successfully created!
+    organization_successful_update: Organization successfully updated!
+    organization_successful_delete: "Organization \"%{organization_short_name}\" successfully deleted!"
+    manager_successful_create: Manager successfully created!
+    manager_successful_delete: Manager successfully deleted!

@@ -6,6 +6,6 @@ Redmine::Plugin.register :business_contacts do
   url 'https://github.com/ilyabelyakov/business_contacts'
   author_url 'https://github.com/ilyabelyakov'
   
-  menu :application_menu, :business_contacts, { :controller => 'business_contacts', :action => 'index' }, :caption => 'Business Contacts'
+  menu :application_menu, :business_contacts, { :controller => 'business_contacts', :action => 'index' }, :caption => :label_business_contact_plural
   # TODO: Add permissions
 end

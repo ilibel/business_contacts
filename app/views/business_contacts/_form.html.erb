@@ -19,115 +19,104 @@
     <% end %>
     
     <p>
-      <%= f.label :short_name %>
+      <%= f.label l('label_business_contact.organization_fields.short_name') %>
       <%= f.text_field :short_name, size: 128 %>
     </p>
     
     <p>
-      <%= f.label :full_name %>
+      <%= f.label l('label_business_contact.organization_fields.full_name') %>
       <%= f.text_field :full_name, size: 128 %>
     </p>
     
     <p>
-      <%= f.label :inn %>
+      <%= f.label l('label_business_contact.organization_fields.inn') %>
       <%= f.text_field :inn, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :kpp %>
+      <%= f.label l('label_business_contact.organization_fields.kpp') %>
       <%= f.text_field :kpp, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :ogrn %>
+      <%= f.label l('label_business_contact.organization_fields.ogrn') %>
       <%= f.text_field :ogrn, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :bik %>
+      <%= f.label l('label_business_contact.organization_fields.bik') %>
       <%= f.text_field :bik, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :bank_name %>
+      <%= f.label l('label_business_contact.organization_fields.bank_name') %>
       <%= f.text_field :bank_name, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :payment_account %>
+      <%= f.label l('label_business_contact.organization_fields.payment_account') %>
       <%= f.text_field :payment_account, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :correspondent_account %>
+      <%= f.label l('label_business_contact.organization_fields.correspondent_account') %>
       <%= f.text_field :correspondent_account, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :ceo_name %>
+      <%= f.label l('label_business_contact.organization_fields.ceo_name') %>
       <%= f.text_field :ceo_name, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :adress %>
+      <%= f.label l('label_business_contact.organization_fields.adress') %>
       <%= f.text_field :adress, size: 128 %>
     </p>
     
     <p>
-      <%= f.label :phones %>
+      <%= f.label l('label_business_contact.organization_fields.phones') %>
       <%= f.text_field :phones, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :website %>
+      <%= f.label l('label_business_contact.organization_fields.website') %>
       <%= f.text_field :website, size: 64 %>
     </p>
     
     <p>
-      <%= f.label :email %>
+      <%= f.label l('label_business_contact.organization_fields.email') %>
       <%= f.text_field :email, size: 64 %>
     </p>
       
     <% if @organization.managers.any? %>  
       <p>
-        <%= f.label :main_manager_id %>
+        <%= f.label l('label_business_contact.organization_fields.main_manager') %>
         <%= f.select :main_manager_id, @organization.managers.pluck(:first_name, :id), {} %>
       </p>
     <% end %>
     
-    <h3>Managers</h3>
-    <%# TODO: implement remove of a manager %>
-    <% @organization.managers.each do |manager| %>
-      <%= render partial: 'manager_fields', locals: {organization: @organization, manager: manager} %>
-    <% end %>
-    <div id="new_managers_container"></div>
-    <%= link_to 'New manager', '#new_managers_container', class: "add-new-manager icon icon-add" %>
+    <% unless @organization.new_record? %>
     
-    <br><br>
-    
-    <h3>Related projects</h3>
-    <% @projects.each do |project| %>
-      <div>
-          <%= check_box_tag "organization[project_ids][]", project.id, @organization.projects.include?(project) %>
-          <%= project.name %>
-      </div>
+      <h3><%= l(:label_business_contact_manager_plural) %></h3>
+      <% @organization.managers.each do |manager| %>
+        <%= render partial: 'manager_fields', locals: {organization: @organization, manager: manager} %>
+      <% end %>
+      <%= link_to l(:label_business_contact_manager_add), business_contact_managers_path(@organization), method: :post, class: "add-new-manager icon icon-add" %>
+      
+      <br><br>
+      
+      <h3><%= l(:label_business_contact_related_projects) %></h3>
+      <% @projects.each do |project| %>
+        <div>
+            <%= check_box_tag "organization[project_ids][]", project.id, @organization.projects.include?(project) %>
+            <%= project.name %>
+        </div>
+      <% end %>
+      
     <% end %>
     <br>
     <div class="form-group">
-      <%= f.submit 'Save', class: 'btn btn-lg btn-success' %>
+      <%= f.submit l(:button_save), class: 'btn btn-lg btn-success' %>
     </div>
   <% end %>
 </div>
-
-<% content_for :header_tags do %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var new_manager_fields = '<%= (render partial: 'manager_fields', locals: {organization: @organization, manager: nil}).gsub("\n", "").html_safe %>';
-      var new_managers_container = $('#new_managers_container');
-      $(document).on('click', '.add-new-manager', function() {
-        new_managers_container.append(new_manager_fields);
-        console.log("Job's done!");
-      });
-    });
-  </script>
-<% end %>

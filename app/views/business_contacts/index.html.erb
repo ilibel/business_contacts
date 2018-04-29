@@ -1,16 +1,17 @@
 <div class="contextual">
-  <%= link_to "New contact", new_business_contact_path, class: "icon icon-add" %>
+  <%= link_to l(:label_business_contact_new), new_business_contact_path, class: "icon icon-add" %>
 </div>
-<h2>Business Contacts</h2>
 
-<table>
+<h2><%= l(:label_business_contact_plural) %></h2>
+<% html_title(l(:label_business_contact_plural)) %>
+
+<table class="list business_contacts odd-even">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Manager Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Actions</th>
+      <th><%= l('label_business_contact.organization_fields.short_name') %></th>
+      <th><%= l('label_business_contact.organization_fields.main_manager') %></th>
+      <th><%= l('label_business_contact.organization_fields.phones') %></th>
+      <th><%= l('label_business_contact.organization_fields.email') %></th>
     </tr>
   </thead>
   <tbody>
@@ -22,10 +23,6 @@
       <td><%= organization.manager.try(:full_name) || organization.ceo_name %></td>
       <td><%= organization.manager.try(:phone)     || organization.phones   %></td>
       <td><%= organization.manager.try(:email)     || organization.email    %></td>
-      <td>
-        <%= link_to "Edit", edit_business_contact_path(organization), class: "icon icon-edit" %> |
-        <%= link_to "Delete", business_contact_path(organization), class: "icon icon-del", method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
     </tr>
   <% end %>
   </tbody>

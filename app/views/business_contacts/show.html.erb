@@ -1,31 +1,32 @@
-<h2>Organization</h2>
+<%= render :partial => 'action_menu' %>
+
+<h2><%= l(:label_business_contact_organization) + ': ' + @organization.short_name %></h2>
 <div class="box">
   <% @organization.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
     
     <div class="form-group form-group-lg">
-      <%# In case of internalization, it should be something like t("organization.#{k}") %>
-      <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+      <b><%= l("label_business_contact.organization_fields.#{k}") %></b>: <%= v %>
     </div>
     <br>
     
   <% end %>
 </div>
 
-<h3>Managers</h3>
+<h3><%= l(:label_business_contact_manager_plural) %></h3>
 <% @organization.managers.each do |manager| %>
   <div class="box">
     <% if @organization.main_manager_id == manager.id %>
-      <span class="icon icon-ok">Main manager</span><br>
+      <span class="icon icon-ok"><%= l('label_business_contact.organization_fields.main_manager') %></span><br>
     <% end %>
     <% manager.attributes.select{|k, v| ! k.ends_with? "id"}.each do |k, v| %>
-        <b><%= Organization.human_attribute_name(k) %></b>: <%= v %>
+        <b><%= l("label_business_contact.manager_fields.#{k}") %></b>: <%= v %>
       <br>
     <% end %>
   </div>
 <% end %>
 
 <% if @organization.projects.any? %>
-  <h3>Related projects</h3>
+  <h3><%= l(:label_business_contact_related_projects) %></h3>
   <div class="box">
     <% @organization.projects.each do |project| %>
       <div>
@@ -37,7 +38,9 @@
 
 <br><br>
 
-<div class="form-group">
-  <%= link_to '« Back', business_contacts_path, class: 'btn btn-lg btn-default' %> |
-  <%= link_to "Edit", edit_business_contact_path(@organization), class: "icon icon-edit" %>
-</div>
+<div style="clear: both;"></div>
+<%= render :partial => 'action_menu' %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'business_contacts/sidebar' %>
+<% end %>

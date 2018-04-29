@@ -4,29 +4,40 @@
   <%= hidden_field_tag "organization[managers_attributes][#{manager.try(:id)}][id]",
     manager.try(:id) %>
   <p>
-    <label>First Name</label>
+    <label><%= l('label_business_contact.manager_fields.first_name') %></label>
     <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][first_name]",
       manager.try(:first_name), size: 64 %>
   </p>
   <p>
-    <label>Middle Name</label>
+    <label><%= l('label_business_contact.manager_fields.middle_name') %></label>
     <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][middle_name]",
       manager.try(:middle_name), size: 64 %>
   </p>
   <p>
-    <label>Last Name</label>
+    <label><%= l('label_business_contact.manager_fields.last_name') %></label>
     <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][last_name]",
       manager.try(:last_name), size: 64 %>
   </p>
   <p>
-    <label>Email</label>
+    <label><%= l('label_business_contact.manager_fields.email') %></label>
     <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][email]",
       manager.try(:email), size: 64 %>
   </p>
   <p>
-    <label>Birthday</label>
+    <label><%= l('label_business_contact.manager_fields.phone') %></label>
+    <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][phone]",
+      manager.try(:phone), size: 64 %>
+  </p>
+  <p>
+    <label><%= l('label_business_contact.manager_fields.birthday') %></label>
     <%= text_field_tag "organization[managers_attributes][#{manager.try(:id)}][birthday]",
       manager.try(:birthday), size: 32, type: :date, placeholder: Date.current - 20.years %>
     
   </p>
+  <% unless manager.new_record? %>
+    <p>
+      <%= link_to l(:label_business_contact_manager_remove), business_contact_manager_path(organization, manager), method: :delete,
+        class: 'icon icon-del', data: { confirm: l(:business_contact_destroy_confirmation_message) } %>
+    </p>
+  <% end %>
 </div>
