@@ -1,5 +1,8 @@
 # Russian strings go here for Rails i18n
 ru:
+  permission_create_business_contacts: Создание бизнес контактов
+  permission_edit_business_contacts: Редактирование бизнес контактов
+  permission_remove_business_contacts: Удаление бизнес контактов
   label_business_contact: Бизнес контакты
   label_business_contact_view_all: Все бизнес контакты
   label_business_contact_new: Новый бизнес контакт

@@ -1,5 +1,8 @@
 # English strings go here for Rails i18n
 en:
+  permission_create_business_contacts: Create business contacts
+  permission_edit_business_contacts: Edit business contacts
+  permission_remove_business_contacts: Remove business contacts
   label_business_contact: Business contact
   label_business_contact_view_all: View all business contacts
   label_business_contact_new: New business contact
