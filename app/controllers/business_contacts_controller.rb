@@ -1,4 +1,5 @@
 class BusinessContactsController < ApplicationController
+  before_action :authorize_global, except: [:index, :show]
   before_action :set_organization, except: [:index, :new, :create]
   before_action :set_projects, except: [:index, :show, :destroy]
 
