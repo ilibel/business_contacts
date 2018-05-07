@@ -1,0 +1,49 @@
+# Portuguese Brazil strings go here for Rails i18n
+pt-br:
+  permission_create_business_contacts: Criar contatos comerciais
+  permission_edit_business_contacts: Editar contatos comerciais
+  permission_remove_business_contacts: Remover contatos comerciais
+  label_business_contact: Contato comercial
+  label_business_contact_view_all: Visualizar todos os contatos comerciais
+  label_business_contact_new: Novo contato comercial
+  label_business_contact_edit: Editar contato comercial
+  label_business_contact_plural: Contatos comerciais
+  label_business_contact_added: Contato comercial adicionado
+  label_business_contact_updated: Contato comercial atualizado
+  label_business_contact_organization: Organização
+  label_business_contact_manager_plural: Gerentes
+  label_business_contact_manager_add: Adicionar gerente
+  label_business_contact_manager_remove: Remover gerente
+  label_business_contact_related_projects: Projetos relacionados
+  label_business_contact: Contato comercial
+    organization_fields: Campos da Organização
+      short_name: Nome abreviado
+      full_name: Nome Completo
+      inn: Inn
+      kpp: Kpp
+      ogrn: Ogrn
+      bik: Bik
+      bank_name: Banco
+      payment_account: Meio de Pagamento
+      correspondent_account: Conta Correspondente
+      ceo_name: Nome do Presidente
+      adress: Endereços
+      phones: Telefones
+      website: Site
+      email: Email
+      main_manager: Gerente principal
+    manager_fields: Campos do Gerente
+      first_name: Primeiro nome
+      middle_name: Nome do meio
+      last_name: Ultimo nome
+      email: Email
+      phone: Telefone
+      birthday: Data de Nascimento
+  
+  business_contact_destroy_confirmation_message: Confirma?
+  notice_business_contact: Notificações contato comercial
+    organization_successful_create: Organização criada com sucesso!
+    organization_successful_update: Organização atualizada com sucesso!
+    organization_successful_delete: "Organização \"%{organization_short_name}\" excluida com sucesso!"
+    manager_successful_create: Gerente criado com sucesso!
+    manager_successful_delete: Gerente deletado com sucesso!
