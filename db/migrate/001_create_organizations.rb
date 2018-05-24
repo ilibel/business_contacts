@@ -15,7 +15,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :phones, limit: 255
       t.string :website, limit: 255
       t.string :email, limit: 255
-      t.integer :main_manager_id, limit: 11
+      t.integer :main_manager_id
     end
     
     create_join_table :organizations, :projects do |t|
